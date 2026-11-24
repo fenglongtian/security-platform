@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { startMock, type MockHandle } from '../services/mockDevices'
+import { startMock } from '../services/mockDevices'
 import type { Alarm, Device, Snapshot } from '../types'
 
 export const useDeviceStore = defineStore('devices', () => {
@@ -11,7 +11,6 @@ export const useDeviceStore = defineStore('devices', () => {
   const selectedId = ref<string | null>(null)
 
   let ws: WebSocket | null = null
-  let mock: MockHandle | null = null
   let settled = false
 
   function applySnapshot(s: Snapshot) {
@@ -28,7 +27,7 @@ export const useDeviceStore = defineStore('devices', () => {
     settled = true
     source.value = 'mock'
     connected.value = false
-    mock = startMock(
+    startMock(
       (s) => applySnapshot(s),
       (a) => addAlarm(a)
     )

@@ -28,10 +28,10 @@ onMounted(() => {
 })
 
 const kpis = [
-  { key: 'total', label: '接入设备总量', get: () => shown.value.total, color: '#5db2e8', icon: '▦' },
-  { key: 'online', label: '当前在线设备', get: () => shown.value.online, color: '#36c46f', icon: '◉' },
+  { key: 'total', label: '接入设备总量', get: () => shown.value.total, color: '#5db2e8', icon: '▦', pulse: false },
+  { key: 'online', label: '当前在线设备', get: () => shown.value.online, color: '#36c46f', icon: '◉', pulse: false },
   { key: 'alarm', label: '实时报警设备', get: () => shown.value.alarm, color: '#ff4d4f', icon: '⚠', pulse: true },
-  { key: 'unhandled', label: '待处理事件', get: () => shown.value.unhandled, color: '#ffb84d', icon: '✦' }
+  { key: 'unhandled', label: '待处理事件', get: () => shown.value.unhandled, color: '#ffb84d', icon: '✦', pulse: false }
 ] as const
 </script>
 

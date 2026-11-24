@@ -2,7 +2,13 @@
 import { ref, watch } from 'vue'
 import { playAlarm } from '../services/sound'
 import { useDeviceStore } from '../stores/devices'
-import type { Alarm } from '../types'
+import type { Alarm, DeviceType } from '../types'
+
+const TYPE_NAME: Record<DeviceType, string> = {
+  infrared: '智能红外',
+  smoke: '智能烟感',
+  antiLost: '智能防丢'
+}
 
 const store = useDeviceStore()
 const current = ref<Alarm | null>(null)
@@ -48,7 +54,7 @@ async function handle() {
         <div class="dialog-content">
           <div class="dialog-title">
             {{ current.level === 'high' ? '高危报警' : '设备报警' }}
-            <i>{{ current.typeName }}</i>
+            <i>{{ TYPE_NAME[current.type] }}</i>
           </div>
           <div class="dialog-device">{{ current.deviceName }}</div>
           <div class="dialog-msg">{{ current.message }}</div>
